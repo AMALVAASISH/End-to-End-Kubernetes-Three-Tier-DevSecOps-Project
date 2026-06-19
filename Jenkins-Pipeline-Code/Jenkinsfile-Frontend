@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git credentialsId: 'GITHUB', url: 'https://github.com/AMALVAASISH/End-to-End-Kubernetes-Three-Tier-DevSecOps-Project.git'
+                git credentialsId: 'GITHUB_APP', url: 'https://github.com/AMALVAASISH/End-to-End-Kubernetes-Three-Tier-DevSecOps-Project.git'
             }
         }
         stage('Sonarqube Analysis') {
@@ -81,7 +81,7 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                git credentialsId: 'GITHUB', url: 'https://github.com/AMALVAASISH/End-to-End-Kubernetes-Three-Tier-DevSecOps-Project.git'
+                git credentialsId: 'github', url: 'https://github.com/AMALVAASISH/End-to-End-Kubernetes-Three-Tier-DevSecOps-Project.git'
             }
         }
         stage('Update Deployment file') {
@@ -91,7 +91,7 @@ pipeline {
             }
             steps {
                 dir('Kubernetes-Manifests-file/Frontend') {
-                    withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'github', variable: 'GITHUB_APP')]) {
                         sh '''
                             git config user.email "amalvaasish2000@gmail.com@gmail.com"
                             git config user.name "AMALVAASISH"
